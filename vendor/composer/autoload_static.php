@@ -439,6 +439,8 @@ class ComposerStaticInite51d7690747d954699869e91931215e0
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Modules\\Donation\\Providers\\ModuleServiceProvider' => __DIR__ . '/../..' . '/app/Modules/Donation/Providers/ModuleServiceProvider.php',
+        'App\\Modules\\Donation\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Modules/Donation/Providers/RouteServiceProvider.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
