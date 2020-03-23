@@ -214,7 +214,13 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'DASHBOARD'],
+        [
+            'text' => 'Dashboard',
+            'url'  => '/home',
+            'icon' => 'fa fa-fw fa-dashboard',
+        ],
+        ['header' => 'ACCOUNT'],
         [
             'text' => 'profile',
             'url'  => 'admin/settings',
@@ -228,13 +234,13 @@ return [
         ['header' => 'DONATION'],
         [
             'text'       => 'Add donation',
-            'icon_color' => 'aqua',
-            'url'        => '/donation'
+            'url'        => '/donation',
+            'icon'       => 'fas fa-fw fa-credit-card',
         ],
         [
             'text'       => 'View donations',
-            'icon_color' => 'aqua',
-            'url'        => '/view-donations'
+            'url'        => '/view-donations',
+            'icon'       => 'fas fa-fw fa-eye',
         ],
     ],
 
@@ -275,21 +281,21 @@ return [
     'plugins' => [
         [
             'name' => 'Datatables',
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
             ],
@@ -312,11 +318,11 @@ return [
         ],
         [
             'name' => 'Chartjs',
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
                 ],
             ],
