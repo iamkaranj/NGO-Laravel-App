@@ -41,6 +41,72 @@
         ]
     },
     {
+        "name": "caffeinated/modules",
+        "version": "v6.1.0",
+        "version_normalized": "6.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/caffeinated/modules.git",
+            "reference": "03711ab777dff507f3b2a8058300335b5ab9dfb0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/caffeinated/modules/zipball/03711ab777dff507f3b2a8058300335b5ab9dfb0",
+            "reference": "03711ab777dff507f3b2a8058300335b5ab9dfb0",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": "^6.0",
+            "php": "^7.2"
+        },
+        "require-dev": {
+            "mockery/mockery": "^1.0",
+            "orchestra/testbench": "^3.8",
+            "phpunit/phpunit": "~7.0",
+            "spatie/phpunit-snapshot-assertions": "^2.0"
+        },
+        "suggest": {
+            "wikimedia/composer-merge-plugin": "Allows the ability to create and merge composer.json files for your individual modules for module-specific dependency management."
+        },
+        "time": "2019-12-12T19:55:19+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "Caffeinated\\Modules\\ModulesServiceProvider"
+                ],
+                "aliases": {
+                    "Module": "Caffeinated\\Modules\\Facades\\Module"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "src/Support/helpers.php"
+            ],
+            "psr-4": {
+                "Caffeinated\\Modules\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Shea Lewis",
+                "email": "shea.lewis89@gmail.com"
+            }
+        ],
+        "description": "Laravel Modules",
+        "keywords": [
+            "caffeinated",
+            "laravel",
+            "modules"
+        ]
+    },
+    {
         "name": "dnoegel/php-xdg-base-dir",
         "version": "v0.1.1",
         "version_normalized": "0.1.1.0",
