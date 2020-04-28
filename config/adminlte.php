@@ -218,7 +218,7 @@ return [
         [
             'text' => 'Dashboard',
             'url'  => '/home',
-            'icon' => 'fa fa-fw fa-dashboard',
+            'icon' => 'nav-icon fas fa-tachometer-alt',
         ],
         ['header' => 'ACCOUNT'],
         [
@@ -235,11 +235,33 @@ return [
         [
             'text'       => 'Add donation',
             'url'        => '/donation',
-            'icon'       => 'fas fa-fw fa-credit-card',
+            'icon'       => 'fas fa-fw fa-plus',
         ],
         [
             'text'       => 'View donations',
             'url'        => '/view-donations',
+            'icon'       => 'fas fa-fw fa-eye',
+        ],
+        ['header' => 'EQUIPMENTS'],
+        [
+            'text'       => 'Add equipment',
+            'url'        => '/equipment',
+            'icon'       => 'fas fa-fw fa-plus',
+        ],
+        [
+            'text'       => 'View equipments',
+            'url'        => '/view-equipments',
+            'icon'       => 'fas fa-fw fa-eye',
+        ],
+        ['header' => 'EVENTS'],
+        [
+            'text'       => 'Add event',
+            'url'        => '/event',
+            'icon'       => 'fas fa-fw fa-plus',
+        ],
+        [
+            'text'       => 'View events',
+            'url'        => '/view-events',
             'icon'       => 'fas fa-fw fa-eye',
         ],
     ],
