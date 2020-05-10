@@ -35,3 +35,19 @@ Route::get('/donation', function() {
 Route::get('/view-donations', function() {
     return view('view-donations');
 })->name('view-donation')->middleware('auth');
+
+Route::get('/equipment', function() {
+    return view('add-equipment');
+})->name('equipment')->middleware('auth');
+
+Route::get('/view-equipments', function() {
+    return view('view-equipments');
+})->name('view-equipments')->middleware('auth');
+
+Route::get('/event', function() {
+    return view('add-event');
+})->name('event')->middleware('auth');
+
+Route::get('/view-events', function() {
+    return view('view-events');
+})->name('view-events')->middleware('auth');
