@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Admin panel',
+    'title' => 'Trust Management System',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -234,34 +234,34 @@ return [
         ['header' => 'DONATION'],
         [
             'text'       => 'Add donation',
-            'url'        => '/donation',
+            'route'      => 'donations.create',
             'icon'       => 'fas fa-fw fa-plus',
         ],
         [
             'text'       => 'View donations',
-            'url'        => '/view-donations',
+            'route'      => 'donations.index',
             'icon'       => 'fas fa-fw fa-eye',
         ],
         ['header' => 'EQUIPMENTS'],
         [
             'text'       => 'Add equipment',
-            'url'        => '/equipment',
+            'route'      => 'equipments.create',
             'icon'       => 'fas fa-fw fa-plus',
         ],
         [
             'text'       => 'View equipments',
-            'url'        => '/view-equipments',
+            'route'      => 'equipments.index',
             'icon'       => 'fas fa-fw fa-eye',
         ],
         ['header' => 'EVENTS'],
         [
             'text'       => 'Add event',
-            'url'        => '/event',
+            'route'        => 'events.create',
             'icon'       => 'fas fa-fw fa-plus',
         ],
         [
             'text'       => 'View events',
-            'url'        => '/view-events',
+            'route'      => 'events.index',
             'icon'       => 'fas fa-fw fa-eye',
         ],
     ],
@@ -324,17 +324,33 @@ return [
         ],
         [
             'name' => 'Select2',
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
+                ],
+            ],
+        ],
+        [
+            'name' => 'toastr',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css',
                 ],
             ],
         ],
@@ -351,11 +367,11 @@ return [
         ],
         [
             'name' => 'Sweetalert2',
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
                 ],
             ],

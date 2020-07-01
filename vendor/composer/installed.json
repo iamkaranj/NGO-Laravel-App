@@ -886,7 +886,8 @@
                 "name": "Jakub Onderka",
                 "email": "jakub.onderka@gmail.com"
             }
-        ]
+        ],
+        "abandoned": "php-parallel-lint/php-console-color"
     },
     {
         "name": "jakub-onderka/php-console-highlighter",
@@ -934,7 +935,8 @@
                 "homepage": "http://www.acci.cz/"
             }
         ],
-        "description": "Highlight PHP code in terminal"
+        "description": "Highlight PHP code in terminal",
+        "abandoned": "php-parallel-lint/php-console-highlighter"
     },
     {
         "name": "jeroennoten/laravel-adminlte",
@@ -5363,6 +5365,83 @@
             "assert",
             "check",
             "validate"
+        ]
+    },
+    {
+        "name": "yoeunes/toastr",
+        "version": "v1.2.3",
+        "version_normalized": "1.2.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yoeunes/toastr.git",
+            "reference": "1a2d58aaa6add715f16ad76112f3a2b32bd89d92"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/yoeunes/toastr/zipball/1a2d58aaa6add715f16ad76112f3a2b32bd89d92",
+            "reference": "1a2d58aaa6add715f16ad76112f3a2b32bd89d92",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/session": "^5.5 || ^6.0 || ^7.0",
+            "illuminate/support": "^5.5 || ^6.0 || ^7.0",
+            "php": ">=7.0"
+        },
+        "time": "2020-03-13T07:27:21+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "Yoeunes\\Toastr\\ToastrServiceProvider"
+                ],
+                "aliases": {
+                    "Toastr": "Yoeunes\\Toastr\\Facades\\Toastr"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Yoeunes\\Toastr\\": "src"
+            },
+            "files": [
+                "src/helpers.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Younes Khoubza",
+                "email": "younes.khoubza@gmail.com",
+                "homepage": "https://github.com/yoeunes",
+                "role": "Developer"
+            }
+        ],
+        "description": "toastr.js flush notifications for Laravel 5, 6, 7 and Lumen",
+        "homepage": "https://github.com/yoeunes/toastr",
+        "keywords": [
+            "alerts",
+            "flush",
+            "flush messages",
+            "flush notifications",
+            "laravel",
+            "laravel 5",
+            "laravel 6",
+            "laravel 7",
+            "laravel flush notifications",
+            "laravel notification",
+            "laravel notify",
+            "laravel toastr",
+            "lumen",
+            "messages",
+            "notification",
+            "php",
+            "toastr",
+            "toastr js",
+            "yoeunes"
         ]
     }
 ]
