@@ -22,32 +22,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
+Route::group(['middleware' => 'auth'], function(){
+    
+    Route::resource('events','EventsController');
+    Route::resource('equipments','EquipmentsController');
+    
+});
+Route::group(['prefix' => 'address'], function (){
+    Route::get('/postal-codes', 'AjaxController@postalCode')->name('address.postal');
+    Route::get('/cities', 'AjaxController@cities')->name('address.cities');
+    Route::get('slug/{slug}', 'AjaxController@address')->name('address.data');
+});
+Route::get('/donors', 'AjaxController@getDonorsByParam')->name('ajax.donor.data');
 
 Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
-
-Route::get('/donation', function() {
-    return view('add-donation');
-})->name('donation')->middleware('auth');
-
-
-Route::get('/view-donations', function() {
-    return view('view-donations');
-})->name('view-donation')->middleware('auth');
-
-Route::get('/equipment', function() {
-    return view('add-equipment');
-})->name('equipment')->middleware('auth');
-
-Route::get('/view-equipments', function() {
-    return view('view-equipments');
-})->name('view-equipments')->middleware('auth');
-
-Route::get('/event', function() {
-    return view('add-event');
-})->name('event')->middleware('auth');
-
-Route::get('/view-events', function() {
-    return view('view-events');
-})->name('view-events')->middleware('auth');

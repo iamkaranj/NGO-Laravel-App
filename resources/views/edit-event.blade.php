@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-<form action="{{ route('events.store') }}" method="post">
+<form action="{{ route('events.update', $event->id ) }}" method="POST">
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -15,25 +15,21 @@
           <div class="form-group">
             <label for="event_name" class="col-sm-10 control-label">Event name</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="name" id="event_name" tabindex="1" placeholder="Event name">
+              <input type="text" class="form-control" name="name" id="event_name" tabindex="1" value="{{ $event->name }}">
+              <input type="hidden" value="PUT" name="_method">
             </div>
           </div>
 
           <div class="form-group date">
             <label for="dob" class="col-sm-6 control-label">Event date</label>
             <div class="col-sm-10">
-              <input type="date" class="form-control" name="date" tabindex="3" id="event_date" name="event_date">
+              <input type="date" class="form-control" name="date" tabindex="3" id="event_date" name="event_date" value="{{ $event->date->format('Y-m-d') }}">
             </div>
           </div>
-          <div class="form-group">
-            <label for="address" class="col-sm-5 control-label">About Event</label>
-            <div class="col-sm-10">
-              <textarea name="about" placeholder="Event About" class="form-control" cols="53" rows="1"></textarea>
-            </div>
-          </div>
-      </div>
-
+        </div>
+        
         <div class="col-md-6">
+          
           <div class="form-group">
             <label for="last_name" class="col-sm-10 control-label">Event type</label>
             <div class="col-sm-10">
@@ -47,11 +43,13 @@
           </div>    
 
           <div class="form-group">
-            <label for="address" class="col-sm-5 control-label"> Event Address</label>
+            <label for="phone" class="col-sm-6 control-label">Event address</label>
             <div class="col-sm-10">
-              <textarea name="address" placeholder="Address...." id="address" class="form-control" cols="53" rows="1"></textarea>
+              <input type="text" class="form-control" name="address" tabindex="4" id="event_Address" value="{{ $event->address }}" placeholder="Event Address">
             </div>
           </div>
+
+
         </div>
       </div></br>
       <div class="row">

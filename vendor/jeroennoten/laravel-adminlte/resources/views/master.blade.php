@@ -64,6 +64,8 @@
 @else
 <script src="{{ mix('js/app.js') }}"></script>
 @endif
-
+@jquery
+@toastr_js
+@toastr_render
 </body>
 </html>
