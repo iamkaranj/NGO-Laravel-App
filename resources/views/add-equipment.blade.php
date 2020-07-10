@@ -8,93 +8,75 @@
 
 @section('content')
 <div class="container">
+<form action="{{ route('equipments.store') }}" method="post">
+  @csrf
     <div class="row">
         <div class="col-md-6">
-
           <div class="form-group">
-            <label for="first_name" class="col-sm-10 control-label">First name</label>
+            <label for="first_name" class="col-sm-10 control-label">Name</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="first_name" tabindex="1" placeholder="First name">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="email" class="col-sm-2 control-label">Email</label>
-            <div class="col-sm-10">
-              <input type="email" class="form-control" tabindex="3" id="email" name="email" placeholder="Email">
-            </div>
-          </div>
-
-          <div class="form-group date">
-            <label for="dob" class="col-sm-6 control-label">Date of birth</label>
-            <div class="col-sm-10">
-              <input type="date" class="form-control" tabindex="5" id="dob" name="dob" placeholder="Phone number">
+              <input type="text" class="form-control" name="name" tabindex="1" placeholder="Name">
             </div>
           </div>
 
           <div class="form-group">
-            <label for="country" class="col-sm-2 control-label">Country</label>
+            <label for="first_name" class="col-sm-10 control-label">Brand</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" tabindex="7" id="country" name="country" placeholder="Enter country">
+              <input type="text" class="form-control" name="brand" tabindex="1" placeholder="Brand name">
             </div>
           </div>
 
+          {{-- <div class="form-group">
+            <label for="country" class="col-sm-3 control-label">Equipment Type</label>
+            <div class="col-sm-10">
+              <select name="type" class="form-control">
+                <option value=null> -- Select -- </option>
+                <option value="old">Old</option>
+                <option value="new">New</option>
+                <option value="lease">Lease</option>
+              </select></div>
+          </div> --}}
           <div class="form-group">
-            <label for="city" class="col-sm-2 control-label">City</label>
+            <label for="address" class="col-sm-2 control-label">Description</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" tabindex="9" id="city" name="city" placeholder="Enter city">
+              <textarea name="description" placeholder="Description" class="form-control" cols="53" rows="1"></textarea>
             </div>
           </div>
-
         </div>
-        
+
         <div class="col-md-6">
-          
           <div class="form-group">
-            <label for="last_name" class="col-sm-10 control-label">Last name</label>
+            <label for="first_name" class="col-sm-10 control-label">Model</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" tabindex="2" id="last_name" name="last_name" placeholder="Last name">
-            </div>
-          </div>    
-
-          <div class="form-group">
-            <label for="phone" class="col-sm-6 control-label">Phone number</label>
-            <div class="col-sm-10">
-              <input type="tel" class="form-control" tabindex="4" id="phone" name="phone" placeholder="Phone number">
-            </div>
-          </div>
-
-
-          <div class="form-group" style="width: 82%">
-            <label for="sel1">Select equipment</label>
-            <select class="form-control" id="equipment" name="equipment">
-              <option>Select Equipment</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="state" class="col-sm-2 control-label">State</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" tabindex="8" id="state" placeholder="Enter state">
+              <input type="text" class="form-control" name="model" tabindex="1" placeholder="Model">
             </div>
           </div>
 
           <div class="form-group">
-            <label for="address" class="col-sm-2 control-label">Address</label>
+            <label for="country" class="col-sm-5 control-label">Equipment Category</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" tabindex="10" name="address" id="address" placeholder="Address...."> 
+              <select name="category" class="form-control">
+                <option> -- Select --</option>
+                <option> Diagnose Machine </option>
+                <option> Analyzer </option>
+                <option> High-Tech Machine </option>
+                <option> Disablity Items </option>
+                <option> Covid-19 Kit</option>
+                <option value="Physics Instruments">Physics Instruments</option>
+              </select>
             </div>
           </div>
-
         </div>
+
       </div></br>
       <div class="row">
         <div class="col-md-12">
-            <button type="submit" class="btn btn-info btn-lg">Add equipment</button>
-            <button type="submit" class="btn btn-default btn-lg">Cancel</button>
+            <button type="submit" class="btn btn-info">Add equipment</button>
+            <button type="submit" class="btn btn-default">Cancel</button>
         </div>
       </div>
     </div>
+  </form>
 </div>
 
 @stop

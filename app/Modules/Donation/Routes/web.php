@@ -11,8 +11,9 @@
 |
 */
 
-Route::group(['prefix' => 'donation'], function () {
-    Route::get('/', function () {
-        dd('This is the Donation module index page. Build something great!');
-    });
-});
+// Route::group(['prefix' => 'donation'], function () {
+//     Route::get('/', function () {
+//         dd('This is the Donation module index page. Build something great!');
+//     });
+// });
+Route::resource('donations','DonationsController');
