@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Equipments;
 use Illuminate\Http\Request;
+use Datatables;
 
 class EquipmentsController extends Controller
 {
@@ -15,6 +16,12 @@ class EquipmentsController extends Controller
     public function index()
     {
         return view('view-equipments');
+    }
+
+    public function dataTable(){
+        $equipments = Equipments::all();
+		return Datatables::of($equipments)
+							->make(true);
     }
 
     /**

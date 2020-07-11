@@ -7,8 +7,11 @@ use App\Donors;
 use App\Equipments;
 use App\Funds;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use NumberFormatter;
+use Yajra\DataTables\Facades\DataTables;
 
 class DonationsController extends Controller
 {
@@ -21,7 +24,23 @@ class DonationsController extends Controller
     {
         return view('view-donations');
     }
+    
+    public function dataTable(){
 
+        $donations = Donations::all();
+        return DataTables::of($donations)
+                            ->addColumn('donorName', function($q){
+                                return Str::title($q->donor->firstname .' '.$q->donor->lastname);
+                            })
+                            ->addColumn('date', function($q){
+                                return Carbon::parse($q->created_at)->format('d M Y');
+                            })
+                            ->addColumn('action', function($q){
+                                $url = route('donation.print',$q->donation_no);
+                                return '<a href="'.$url.'" class="btn-xs btn-danger">Show Receipt</a>';
+                            })
+							->make(true);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -90,7 +109,13 @@ class DonationsController extends Controller
         $donation = Donations::find($id);
         return view('edit-donation', compact('donation'));
     }
-
+    public function printReceipt($id)
+    {
+        $donation = Donations::where('donation_no', $id)->first();
+        $digit = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+        // dd($donation->donor->cities->name);
+        return view('receipt', compact('donation','digit'));
+    }
     /**
      * Show the form for editing the specified resource.
      *

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use DataTables;
 
 class EventsController extends Controller
 {
@@ -15,7 +16,14 @@ class EventsController extends Controller
      */
     public function index()
     {
+        
         return view('view-events');
+    }
+
+    public function datatable(Request $request){
+        $events = Events::all();
+		return Datatables::of($events)
+							->make(true);
     }
 
     /**

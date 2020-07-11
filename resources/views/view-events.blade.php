@@ -47,17 +47,17 @@
       "serverSide": true,
       //pass url of table data
       
-      // "ajax": {
-      //     "url": "url",
-      //     "type": "GET"
-      // },
-      // "aoColumns": [
-      //   { data: 'id', name: 'id'},
-      //   { data: 'name', name: 'name'},
-      //   { data: 'amount', name: 'amount'},
-      //   { data: 'type', name: 'type'},
-      //   { data: 'date', name: 'date'}
-      // ]
+      "ajax": {
+          "url": "{{ route('events.datatable') }}",
+          "type": "GET"
+      },
+      "aoColumns": [
+        { data: 'id', name: 'id'},
+        { data: 'name', name: 'name'},
+        { data: 'type', name: 'type'},
+        { data: 'date', name: 'date'},
+        { data: 'address', name: 'address'}
+      ]
     });
   });
 </script>

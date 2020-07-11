@@ -15,17 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function(){
     
     Route::resource('events','EventsController');
+    Route::get('/event/datatable','EventsController@datatable')->name('events.datatable');
     Route::resource('equipments','EquipmentsController');
+    Route::get('/equipment/datatable','EquipmentsController@datatable')->name('equipments.datatable');
+
+    Route::get('/home', 'HomeController@index')->name('home');
     
 });
 Route::group(['prefix' => 'address'], function (){
@@ -35,6 +34,8 @@ Route::group(['prefix' => 'address'], function (){
 });
 Route::get('/donors', 'AjaxController@getDonorsByParam')->name('ajax.donor.data');
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
+
+
+
+Auth::routes();
+

@@ -16,9 +16,11 @@
             <thead>
               <tr role="row">
                 <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Donation id: activate to sort column descending" style="width: 203.4px;">Donation id</th>
-                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Donor name: activate to sort column ascending" style="width: 262.6px;">Donor name</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Donation amount: activate to sort column ascending" style="width: 233px;">Equipment</th>
-                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending" style="width: 123.6px;">Date</th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Donation amount: activate to sort column ascending" style="width: 233px;">Model</th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Donation amount: activate to sort column ascending" style="width: 233px;">Brand</th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending" style="width: 123.6px;">Category</th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending" style="width: 123.6px;">Total in stock</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,21 +44,22 @@
       "searching": true,
       "ordering": true,
       "info": true,
-      "autoWidth": false,
+      "autoWidth": true,
       "serverSide": true,
       //pass url of table data
       
-      // "ajax": {
-      //     "url": "url",
-      //     "type": "GET"
-      // },
-      // "aoColumns": [
-      //   { data: 'id', name: 'id'},
-      //   { data: 'name', name: 'name'},
-      //   { data: 'amount', name: 'amount'},
-      //   { data: 'type', name: 'type'},
-      //   { data: 'date', name: 'date'}
-      // ]
+      "ajax": {
+        "url": "{{ route('equipments.datatable') }}",
+          "type": "GET"
+      },
+      "aoColumns": [
+        { data: 'id', name: 'id'},
+        { data: 'name', name: 'name'},
+        { data: 'model', name: 'model'},
+        { data: 'brand', name: 'brand'},
+        { data: 'category', name: 'category'},
+        { data: 'avail', name: 'avail'}
+      ]
     });
   });
 </script>
