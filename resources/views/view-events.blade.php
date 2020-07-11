@@ -48,7 +48,7 @@
       //pass url of table data
       
       "ajax": {
-          "url": "/events/dataTable",
+          "url": "{{ route('events.datatable') }}",
           "type": "GET"
       },
       "aoColumns": [

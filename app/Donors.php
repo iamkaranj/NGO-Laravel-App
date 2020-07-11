@@ -8,7 +8,7 @@ class Donors extends Model
 {
     protected $table = 'donors';
 
-    protected $with = 'donations';
+    // protected $with = 'city';
 
     protected $fillable = [
         'firstname',
@@ -29,15 +29,15 @@ class Donors extends Model
         return $this->belongsTo(Donations::class);
     }
 
-    public function city(){
-        return $this->hasOne(Cities::class,'city','id');
+    public function cities(){
+        return $this->belongsTo(Cities::class,'city','id');
     }
 
     public function state(){
-        return $this->hasOne(States::class,'state','id');
+        return $this->belongsTo(States::class,'state','id');
     }
     
     public function country(){
-        return $this->hasOne(Countries::class,'country','id');
+        return $this->belongsTo(Countries::class,'country','id');
     }
 }

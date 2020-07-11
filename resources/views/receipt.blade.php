@@ -1,40 +1,3 @@
-<?php
-header('Content-Type: text/html; charset=utf-8');
-
-include_once('includes/db.php');
-include_once 'includes/rstoword.php';
-
-
-if(isset($_GET['id']))
-{
-	$id = $_GET['id'];
-
-	$run = mysqli_query($con, "select * from donation where d_id='$id'");
-
-	if($row = mysqli_fetch_array($run))
-	{	
-			$name=$row[2];
-			$date = $row[1];
-			$address = $row[3];
-			$district = $row[4];
-			$city = $row[5];
-			$amount = $row[6];
-			$mode = $row[7];
-			$types = array('Cheque','NEFT/RTGS','DD');
-			$word = RsToWord($amount);
-
-			if(in_array($mode, $types))
-			{
-				$run1 = mysqli_query($con, "select * from ref_donation where d_id='$id'");
-				if($row1 = mysqli_fetch_array($run1))
-				{
-					$bank = $row1[2];
-					$ref  = $row1[3];
-				}
-			}
-
-?>
-
 <!doctype html>
 <html lang="en" class="no-js">
 
@@ -73,21 +36,19 @@ return false;
 }
 </script>
 	<!-- Font awesome -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 	<!-- Sandstone Bootstrap CSS -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<!-- Bootstrap Datatables -->
-	<link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 	<!-- Bootstrap social button library -->
-	<link rel="stylesheet" href="css/bootstrap-social.css">
+	<link rel="stylesheet" href="{{ asset('css/bootstrap-social.css') }}">
 	<!-- Bootstrap select -->
-	<link rel="stylesheet" href="css/bootstrap-select.css">
+	<link rel="stylesheet" href="{{ asset('css/bootstrap-select.css') }}">
 	<!-- Bootstrap file input -->
-	<link rel="stylesheet" href="css/fileinput.min.css">
+	<link rel="stylesheet" href="{{ asset('css/fileinput.min.css') }}">
 	<!-- Awesome Bootstrap checkbox -->
-	<link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
+	<link rel="stylesheet" href="{{ asset('css/awesome-bootstrap-checkbox.css') }}">
 	<!-- Admin Stye -->
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 	<!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -97,12 +58,6 @@ return false;
 </head>
 
 <body>
-	<div class="brand clearfix">
-		<span style="color:#EEE; font-size:20px; font-family:'Century Gothic'" class="logo"><strong>RVSGCT</strong><span style="font-size:14px">  Admin Panel</span></span>
-
-</div>
-
-	
 	
 <div class="content-wrapper">
 			<div class="container-fluid">
@@ -113,11 +68,7 @@ return false;
 							
 
 <div class="col-md-12" style="font-size:35px; font-family:'Century Gothic'; color:#8B8B8B; text-align:center" >
-Receipt</div><br><br><br><br>
-<center>
-<input name="b_print" type="button" class="ipt btn btn-default" onClick="printdiv('div_print');" value=" Print ">
-<a href="Receipt1.php" name="b_print" type="button" class="ipt btn btn-default" value=""> Back </a>
-</center>
+Receipt</div>
 <div class="col-md-12" >
 	<div class="panel panel-default" style="border:none">
 
@@ -126,32 +77,52 @@ Receipt</div><br><br><br><br>
 			<div style="border:#000 solid thin;padding:15px">
 			<table width="100%" border="0">
 				<tr>
-					<td colspan="3"><img src="img/rec.jpg" width="100%" class="img-responsive"></td>
+				<td colspan="3"><img src="{{ asset('images/rec.jpg')}}" width="100%" class="img-responsive"></td>
 				</tr>
 				<tr>
 					<td height="40" colspan="2"><span style="font-size:18px; color:#006">
-					<strong>સુજ્ઞ મહાશયશ્રી&nbsp;</strong></span><span style="color:#000; font-size:18px"><?php if(isset($name)){ echo $name; }?></span>
+					<strong>સુજ્ઞ મહાશયશ્રી&nbsp;</strong></span>
+						<span style="color:#000; font-size:18px">
+							{{ Str::title($donation->donor->firstname ." ". $donation->donor->lastname)}}
+						</span>
 					</td>
 
-					<td width="25%" colspan="2"><span style="font-size:18px; color:#006"><strong>તા.</strong></span><span style="color:#000; font-size:18px"> <?php if(isset($date)){ echo $date; }?></span></td>
+					<td width="25%" colspan="2"><span style="font-size:18px; color:#006"><strong>તા.</strong></span>
+						<span style="color:#000; font-size:18px"> 
+						{{ \Carbon\Carbon::parse($donation->created_at)->format('d M Y') }}
+						</span></td>
 				</tr>
 				<tr>
-					<td height="40" colspan="2"><span style="font-size:18px; color:#006"><strong>સરનામું&nbsp;</strong></span><span style="color:#000; font-size:18px"> <?php if(isset($address)){ echo $address; }?></span></td>
-					<td colspan="2"><span style="font-size:18px; color:#006"><strong>મું.&nbsp;</strong></span><span style="color:#000; font-size:18px"><?php if(isset($city)){ echo $city; }?></span></td>
+					<td height="40" colspan="2"><span style="font-size:18px; color:#006"><strong>સરનામું&nbsp;</strong></span><span style="color:#000; font-size:18px"> 
+						{{ $donation->donor->address }}	
+					</span></td>
+					<td colspan="2"><span style="font-size:18px; color:#006"><strong>મું.&nbsp;</strong></span><span style="color:#000; font-size:18px">
+						{{ $donation->donor->cities->name }}	
+					</span></td>
 				</tr>
 				<tr>
-					<td width="54%" height="40"><span style="font-size:18px; color:#006"><strong>જીલ્લો&nbsp;</strong></span><span style="color:#000; font-size:18px"><?php if(isset($district)){ echo $district; }?></span></td>
-					<td height="40" colspan="3"><span style="font-size:18px; color:#006"><strong>આપશ્રી તરફથી આ ટ્રસ્ટને દાન </strong></span><span style="color:#000; font-size:18px"> <?php if(isset($amount)){ echo $amount; }?></span></td>
-				</tr>
-				<tr>
-					<td height="40"><span style="font-size:18px; color:#006"><strong>અંકે રૂપિયા</strong></span><span style="color:#000; font-size:18px"> <?php if(isset($word)){ echo $word; }?> </span></td>
-					<td height="40" colspan="3" align="right"><span style="color:#000; font-size:18px">
-					<u><?php if(isset($mode)){ echo $mode; }?></u>
-					</span><span style="font-size:18px; color:#006"><strong> મળેલ છે.</strong></span></td>
-				</tr>
+					<td width="60%" height="40"><span style="font-size:18px; color:#006"><strong>જીલ્લો&nbsp;</strong></span><span style="color:#000; font-size:18px">
+						{{ $donation->donor->cities->name }}
+					</span></td>
+					<td height="40" colspan="3"><span style="font-size:18px; color:#006"><strong>આપશ્રી તરફથી આ ટ્રસ્ટને દાન</strong></span>
+						@if( $donation->type->itemable_type == "funds" )
+							<span style="color:#000; font-size:18px"> &nbsp;&nbsp;{{ $donation->type->quantity }}/-</span></td>
+						</tr>
+						<tr>
+							<td height="40"><span style="font-size:18px; color:#006"><strong>અંકે રૂપિયા</strong></span><span style="color:#000; font-size:18px"> 
+								{{ Str::title(App\Donations::getIndianCurrency($donation->type->quantity)) }} Only /-
+							</span></td>
+							<td height="40" colspan="3" align="right"><span style="color:#000; font-size:18px">
+							<u> {{ $donation->type->itemable->modes }} </u>
+							</span><span style="font-size:18px; color:#006"><strong> મળેલ છે.</strong></span></td>
+						</tr>
+						@else
+							<span style="color:#000; font-size:18px"> &nbsp;&nbsp;{{ $donation->type->quantity }}/-</span></td>
+						@endif
+					
 				<tr>
 					<td height="78" valign="bottom"><span style="font-size:22px; color:#006"><strong>આભાર...</strong></span></td>
-					<td height="78" colspan="3" align="right" valign="bottom"><span style="font-size:18px; color:#006"><strong>a<br>
+					<td height="78" colspan="3" align="right" valign="bottom"><span style="font-size:18px; color:#006"><strong><br>
 					રકમ વસુલ કરનારની સહી</strong></span></td>
 				</tr>
 				<tr style="border-top:#009 solid">
@@ -162,6 +133,11 @@ Receipt</div><br><br><br><br>
 			</div>
 
 		</div>
+
+		<center>
+			<input name="b_print" type="button" class="ipt btn btn-default" onClick="printdiv('div_print');" value=" Print ">
+			<a href="Receipt1.php" name="b_print" type="button" class="ipt btn btn-default" value=""> Back </a>
+			</center>
 	</div>
 </div>
 
@@ -191,13 +167,13 @@ Receipt</div><br><br><br><br>
 	<!-- Loading Scripts -->
 
 	
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.dataTables.min.js"></script>
-	<script src="js/dataTables.bootstrap.min.js"></script>
-	<script src="js/Chart.min.js"></script>
-	<script src="js/fileinput.js"></script>
-	<script src="js/chartData.js"></script>
-	<script src="js/main.js"></script>
+	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
+	<script src="{{ asset('js/Chart.min.js') }}"></script>
+	<script src="{{ asset('js/fileinput.js') }}"></script>
+	<script src="{{ asset('js/chartData.js') }}"></script>
+	<script src="{{ asset('js/main.js') }}"></script>
 	
 	<script>
 		
@@ -226,19 +202,3 @@ Receipt</div><br><br><br><br>
 </body>
 
 </html>
-
-<?php
-	}
-	else
-		{
-			echo "<script>alert ('No DB Found From This ID..!') </script>";
-		}
-
-}
-else
-{
-	echo "<script>alert ('SOMETHING WENT WRONG') </script>";
-}
-
-
-?>

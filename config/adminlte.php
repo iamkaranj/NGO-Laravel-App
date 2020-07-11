@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'use_ico_only' => false,
+    'use_ico_only' => true,
     'use_full_favicon' => false,
 
     /*
@@ -45,8 +45,8 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>Trust Management</b>',
+    'logo_img' => asset('images/logo.png'),
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -69,6 +69,7 @@ return [
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
     'usermenu_desc' => false,
+    'usermenu_profile_url' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -90,25 +91,45 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Extra Classes
+    | Authentication Views Classes
+    |--------------------------------------------------------------------------
+    |
+    | Here you can change the look and behavior of the authentication views.
+    |
+    | For more detailed instructions you can look here:
+    | https://github.com/jeroennoten/Laravel-AdminLTE/#661-authentication-views-classes
+    |
+    */
+
+    'classes_auth_card' => 'card-outline card-primary',
+    'classes_auth_header' => '',
+    'classes_auth_body' => '',
+    'classes_auth_footer' => '',
+    'classes_auth_icon' => '',
+    'classes_auth_btn' => 'btn-flat btn-primary',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Panel Classes
     |--------------------------------------------------------------------------
     |
     | Here you can change the look and behavior of the admin panel.
     |
     | For more detailed instructions you can look here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/#66-classes
+    | https://github.com/jeroennoten/Laravel-AdminLTE/#662-admin-panel-classes
     |
     */
 
     'classes_body' => '',
     'classes_brand' => '',
     'classes_brand_text' => '',
-    'classes_content_header' => 'container-fluid',
-    'classes_content' => 'container-fluid',
+    'classes_content_wrapper' => '',
+    'classes_content_header' => '',
+    'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
-    'classes_topnav_nav' => 'navbar-expand-md',
+    'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
     /*
@@ -179,7 +200,7 @@ return [
 
     'password_email_url' => 'password/email',
 
-    'profile_url' => 'profile',
+    'profile_url' =>  'profile',
 
     /*
     |--------------------------------------------------------------------------
@@ -194,6 +215,8 @@ return [
     */
 
     'enabled_laravel_mix' => false,
+    'laravel_mix_css_path' => 'css/app.css',
+    'laravel_mix_js_path' => 'js/app.js',
 
     /*
     |--------------------------------------------------------------------------
@@ -208,7 +231,11 @@ return [
     */
 
     'menu' => [
-        
+        [
+            'text' => 'search',
+            'search' => true,
+            'topnav' => true,
+        ],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
@@ -282,10 +309,10 @@ return [
         JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\SearchFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\SubmenuFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
+        JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class,
     ],
 
     /*
@@ -394,3 +421,4 @@ return [
         ],
     ],
 ];
+

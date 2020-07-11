@@ -44,12 +44,12 @@
       "searching": true,
       "ordering": true,
       "info": true,
-      "autoWidth": false,
+      "autoWidth": true,
       "serverSide": true,
       //pass url of table data
       
       "ajax": {
-          "url": "equipments/dataTable",
+        "url": "{{ route('equipments.datatable') }}",
           "type": "GET"
       },
       "aoColumns": [

@@ -20,7 +20,7 @@ class EventsController extends Controller
         return view('view-events');
     }
 
-    public function dataTable(){
+    public function datatable(Request $request){
         $events = Events::all();
 		return Datatables::of($events)
 							->make(true);
