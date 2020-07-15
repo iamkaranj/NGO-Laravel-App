@@ -35,9 +35,16 @@ class DonationsController extends Controller
                             ->addColumn('date', function($q){
                                 return Carbon::parse($q->created_at)->format('d M Y');
                             })
+                            ->addColumn('item', function($q){
+                                if($q->type->itemable_type == "funds"){
+                                    return $q->type->itemable->modes;
+                                }else{
+                                    return $q->type->itemable->model;
+                                }
+                            })
                             ->addColumn('action', function($q){
                                 $url = route('donation.print',$q->donation_no);
-                                return '<a href="'.$url.'" class="btn-xs btn-danger">Show Receipt</a>';
+                                return '<a href="'.$url.'" class="btn btn-xs btn-success">Show Receipt</a>';
                             })
 							->make(true);
     }
@@ -87,7 +94,7 @@ class DonationsController extends Controller
             $fund->increment('total', $request->amount);
         }
         
-        return redirect()->route('donations.index');
+        return redirect()->route('donation.print', $donation->donation_no);
     }
     
     public function generateDonationNumber() {

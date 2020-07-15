@@ -21,6 +21,7 @@
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Donor name: activate to sort column ascending" style="width: 262.6px;">Donor Email</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Donor name: activate to sort column ascending" style="width: 262.6px;">Donor City</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="donation type: activate to sort column ascending" style="width: 174.6px;">Type</th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="donation type: activate to sort column ascending" style="width: 174.6px;">Item</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Donation amount: activate to sort column ascending" style="width: 233px;">Quantity</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending" style="width: 123.6px;">Date</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending" style="width: 123.6px;">Action</th>
@@ -60,6 +61,7 @@
         { data: 'donor.email', name: 'email'},
         { data: 'donor.cities.name', name: 'city'},
         { data: 'type.itemable_type', name: 'type'},
+        { data: 'item', name: 'item'},
         { data: 'type.quantity', name: 'quantity'},
         { data: 'date', name: 'date'},
         { data: 'action', name: 'action'}

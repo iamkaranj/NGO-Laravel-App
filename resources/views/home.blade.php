@@ -1,3 +1,4 @@
+{{-- {{dd($data)}} --}}
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')
@@ -15,19 +16,22 @@
 <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-primary">
-            <div class="inner">
-              <h3><?php echo $data['total_donated_cash']; ?></h3>
-              <p>Total Donation Amount</p>
+          <a href="{{ route('donations.index') }}">
+            <div class="small-box bg-primary">
+              <div class="inner">
+                <h3><?php echo $data['total_donated_cash']; ?></h3>
+                <p>Total Donation Amount</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-fw fa-usd" aria-hidden="true"></i>
+              </div>
             </div>
-            <div class="icon">
-              <i class="fa fa-money"></i>
-            </div>
-          </div>
+          </a>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
+          <a href="{{ route('equipments.index') }}">
           <div class="small-box bg-green">
             <div class="inner">
               <h3><?php echo $data['total_equipments'] ?></h3>
@@ -38,6 +42,7 @@
               <i class="fa fa-fw fa-wrench"></i>
             </div>
           </div>
+          </a>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
@@ -166,19 +171,37 @@
                 <table class="table m-0">
                   <thead>
                     <tr>
-                      <th>Donation ID</th>
                       <th>Donation No</th>
-                      <th>Donation Type</th>
+                      <th>Donor Name</th>
+                      <th>Donor Mobile</th>
+                      <th>Donor City</th>
+                      <th>Item</th>
+                      <th>Quantity</th>
                       <th>Date</th>
                     </tr>
                   </thead>
                   <tbody>
-                  
-                <tr>
-                  <td colspan="4" class="text-center"> No records found. </td>
-                </tr>
-                
-                    
+                    @forelse ($data['donations'] as $item)
+                        <tr>
+                          <td>{{ $item->donation_no }}</td>
+                        <td>{{ $item->donor->firstname }}</td>
+                        <td>{{ $item->donor->mobile }}</td>
+                        <td>{{ $item->donor->cities->name }}</td>
+                        <td>
+                        @if ($item->type->itemable_type == 'funds')
+                            {{ $item->type->itemable->modes }}
+                        @else
+                            {{ $item->type->itemable->model }}
+                        @endif
+                        </td>  
+                        <td>{{ $item->type->quantity }}</td>
+                        <td>{{ Carbon\Carbon::parse($item->created_at)->format('d M Y') }} </td>
+                        </tr>
+                    @empty    
+                      <tr>
+                        <td colspan="4" class="text-center"> No records found. </td>
+                      </tr>
+                    @endforelse
                   </tbody>
                 </table>
               </div>

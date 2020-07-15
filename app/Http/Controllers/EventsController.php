@@ -6,6 +6,7 @@ use App\Events;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use DataTables;
+use Illuminate\Routing\UrlGenerator;
 
 class EventsController extends Controller
 {
@@ -22,7 +23,12 @@ class EventsController extends Controller
 
     public function datatable(Request $request){
         $events = Events::all();
-		return Datatables::of($events)
+
+        return Datatables::of($events)
+                            // ->addColumn('action', function($q){
+                            //     $url = route('events.show',$q->id);
+                            //     return '<a href="'.$url.'" class="btn btn-xs btn-success">edit</a>';
+                            // })
 							->make(true);
     }
 

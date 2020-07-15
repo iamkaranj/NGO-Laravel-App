@@ -20,7 +20,8 @@
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Donation amount: activate to sort column ascending" style="width: 233px;">Event type</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="donation type: activate to sort column ascending" style="width: 174.6px;">Event date</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending" style="width: 123.6px;">Event address</th>
-                </tr>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending" style="width: 123.6px;">Action</th>  
+              </tr>
             </thead>
             <tbody>
             
@@ -56,7 +57,8 @@
         { data: 'name', name: 'name'},
         { data: 'type', name: 'type'},
         { data: 'date', name: 'date'},
-        { data: 'address', name: 'address'}
+        { data: 'address', name: 'address'},
+        { data: 'action', name: 'action'}
       ]
     });
   });

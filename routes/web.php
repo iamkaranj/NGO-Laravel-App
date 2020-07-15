@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +11,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use Illuminate\Http\Request;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,15 +31,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/home', 'HomeController@index')->name('home');
     
 });
+Route::get('/donors', 'AjaxController@getDonorsByParam')->name('ajax.donor.data');
+
 Route::group(['prefix' => 'address'], function (){
     Route::get('/postal-codes', 'AjaxController@postalCode')->name('address.postal');
     Route::get('/cities', 'AjaxController@cities')->name('address.cities');
     Route::get('slug/{slug}', 'AjaxController@address')->name('address.data');
 });
-Route::get('/donors', 'AjaxController@getDonorsByParam')->name('ajax.donor.data');
-
-
-
-
-Auth::routes();
-

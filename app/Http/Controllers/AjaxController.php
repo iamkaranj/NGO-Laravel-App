@@ -6,6 +6,7 @@ use App\Cities;
 use App\Countries;
 use App\Donors;
 use App\PostalCodes;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AjaxController extends Controller
@@ -72,23 +73,29 @@ class AjaxController extends Controller
     }
 
     public function getDonorsByParam(Request $request){
-        if($request->has('param') && $request->param)
+        if($request->has('search') && $request->search)
         {
-            $searchTerm = $request->param;
+            $searchTerm = $request->search;
             $data = Donors::query()
                             ->where('firstname', 'LIKE', "%{$searchTerm}%")
                             ->orWhere('lastname', 'LIKE', "%{$searchTerm}%")
                             ->paginate(15);
             if(!$data->isEmpty()){
               foreach ($data as $row){
-                $new_row['label']=htmlentities(stripslashes($row['item_name']));
-                $new_row['id']=htmlentities(stripslashes($row['item_id']));
-                $new_row['gst']=htmlentities(stripslashes($row['item_gst']));
-                $new_row['packing']=htmlentities(stripslashes($row['item_packing']));
+                $new_row['label'] = htmlentities(stripslashes("Name:".$row['firstname'] ." ".$row['lastname'] ." City:".$row->cities->name ." Email:". $row->email));
+                $new_row['value'] = htmlentities(stripslashes($row['firstname']));
+                $new_row['lastname'] = htmlentities(stripslashes($row['lastname']));
+                $new_row['email'] = htmlentities(stripslashes($row['email']));
+                $new_row['mobile'] = htmlentities(stripslashes($row['mobile']));
+                $new_row['address'] = htmlentities(stripslashes($row['address']));
+                $new_row['dob'] = htmlentities(stripslashes(Carbon::parse($row['dob'])->format('Y-M-d') ));
+                $new_row['pincode'] = htmlentities(stripslashes($row['pincode']));
+
                 $row_set[] = $new_row; //build an array
               }
-              echo json_encode($row_set); //format the array into json data
+              return json_encode($row_set); //format the array into json data
             }    
         }
     }
+    
 }

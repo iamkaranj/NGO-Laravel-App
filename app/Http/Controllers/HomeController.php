@@ -35,12 +35,11 @@ class HomeController extends Controller
         $data['total_donors'] = Donors::count();
         $data['total_events'] = Events::count();
 
+        $data['donations'] = Donations::paginate(7);
+
         $data['total_donated_cash'] = Funds::all()->sum('total');
-        // $data['total_donated_cash'] = (int)$data['total_donated_cash'];
-
         $data['total_equipments'] = Equipments::all()->sum('avail');
-        // $data['total_equipments'] = (int)$data['total_equipments'];
-
+        
         $events = Events::orderBy('id', 'desc')->limit(5)->get();
         
         $funds = Funds::all();
@@ -57,7 +56,7 @@ class HomeController extends Controller
         $pie_labels .= "'";
 
         $pie_values = implode(",",$values);
-
+        
         return view('home', compact('data','events','pie_labels','pie_values'));
     }
 }

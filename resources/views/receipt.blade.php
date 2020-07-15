@@ -136,7 +136,7 @@ Receipt</div>
 
 		<center>
 			<input name="b_print" type="button" class="ipt btn btn-default" onClick="printdiv('div_print');" value=" Print ">
-			<a href="Receipt1.php" name="b_print" type="button" class="ipt btn btn-default" value=""> Back </a>
+			<a href="{{ request()->back() }}" name="b_print" type="button" class="ipt btn btn-default" value=""> Back </a>
 			</center>
 	</div>
 </div>

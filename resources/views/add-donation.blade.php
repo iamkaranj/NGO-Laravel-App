@@ -5,7 +5,10 @@
     <style>
       .fund-donation{ display: none;}
       .equipment-donation{ display: none;}
-
+      .ui-autocomplete.ui-widget {
+  font-family: Verdana,Arial,sans-serif;
+  font-size: 11px;
+}
     </style>
 @stop
 @section('content_header')
@@ -13,7 +16,7 @@
 @stop
 
 @section('content')
-<form action="{{ route('donations.store') }}" method="POST">
+<form action="{{ route('donations.store') }}" method="POST" autocomplete="off">
 @csrf
 <div class="container">
     <div class="row">
@@ -103,7 +106,7 @@
           <div class="form-group date">
             <label for="dob" class="col-sm-6 control-label">Date of birth</label>
             <div class="col-sm-10">
-              <input type="date" class="form-control" tabindex="5" id="dob" name="dob" placeholder="Phone number">
+              <input type="text" class="form-control" tabindex="5" id="dob" name="dob" placeholder="Date Of Birth">
             </div>
           </div>
 
@@ -172,9 +175,16 @@
 @stop
 
 @section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+
 <script>
 $.noConflict();
 jQuery(document).ready(function($) {
+  $('#dob').datepicker({  
+    dateFormat: 'dd/MM/yy'
+    });
     getCityFromPostal();
     $('#city').select2({
         placeholder: "Select City",
@@ -314,7 +324,44 @@ jQuery(document).ready(function($) {
       $('.equipment-donation').show();
     }
     });
+      $(document).on('keyup',"#firstname",function() {
+        // var id = $(this).attr('id');
+        // id = id.replace("productName_",'');
+        // console.log(id);
+      $(this.target).find('input').autocomplete();
+      $("#firstname").autocomplete({
+        source: function( request, response ) {
+      // Fetch data
+        $.ajax({
+          url: "{{ route('ajax.donor.data') }}",
+          type: 'get',
+          dataType: "json",
+          data: {
+          search: request.term
+          },
+          success: function(data) {
+          response( data );
+          }
+        });
+      },
+      select: function (event, ui) {
+      // Set selection
+      $("#firstname").val(ui.item.value); // display the selected text
+      $("#lastname").val(ui.item.lastname); // display the selected text
+      $("#email").val(ui.item.email); // display the selected text
+      $("#city").val(ui.item.city); // display the selected text
+      $("#postal_code").val(ui.item.pincode); // display the selected text
+      getCityFromPostal();
+      $("#mobile").val(ui.item.mobile); // display the selected text
+      $("#address").val(ui.item.address); // display the selected text
+      $("#firstname").val(ui.item.value); // display the selected text
+      $('#dob').datepicker("setDate", new Date(ui.item.dob)).trigger('change');
+      $("#firstname").autocomplete('close');
+      },
+    });
+  });
 });
+
 </script>
 
 @stop
